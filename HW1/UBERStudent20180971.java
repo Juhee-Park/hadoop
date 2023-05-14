@@ -66,7 +66,7 @@ public class UBERStudent20180971
 	public static class UBERReducer extends Reducer<Text, Text, Text, Text> 
 	{
 		//
-		private String [] weeks = {"", "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
+		private String [] weeks = {"", "MON", "TUE", "WED", "THR", "FRI", "SAT", "SUN"};
 		private Text new_key = new Text();
 		private Text result = new Text();
 
