@@ -21,17 +21,22 @@ public class IMDb
 
 		public void map(Object key, Text value, Context context) throws IOException, InterruptedException 
 		{
-			StringTokenizer itr = new StringTokenizer(value.toString("::"));
+			String value_string = value.toString().replaceAll("::", "@");
+			StringTokenizer itr = new StringTokenizer(value_string, "@");
 			while (itr.hasMoreTokens()) 
 			{
-				int index = itr.nextToken();
+				int index = Integer.parseInt(itr.nextToken().trim());
+				System.out.println(index);
 				String movie_name = itr.nextToken();
-				genre_list = itr.nextToken();
-				
-				StringTokenizer genre_itr = new StringTokenizer(genre_list.toString("|"));
+				System.out.println(movie_name);
+				genre_list.set(itr.nextToken());
+				System.out.println(genre_list);
+				StringTokenizer genre_itr = new StringTokenizer(genre_list.toString(), "|");
 				
 				while (genre_itr.hasMoreTokens()) {
-					genre.set(genre_itr.nextToken());
+					String adasasd = genre_itr.nextToken();
+					genre.set(adasasd);
+					System.out.println(adasasd);
 					context.write(genre, one);
 				}				
 			}
