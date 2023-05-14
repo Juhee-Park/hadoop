@@ -26,17 +26,13 @@ public class IMDBStudent20180971
 			while (itr.hasMoreTokens()) 
 			{
 				int index = Integer.parseInt(itr.nextToken().trim());
-				System.out.println(index);
 				String movie_name = itr.nextToken();
-				System.out.println(movie_name);
 				genre_list.set(itr.nextToken());
-				System.out.println(genre_list);
+	
 				StringTokenizer genre_itr = new StringTokenizer(genre_list.toString(), "|");
 				
 				while (genre_itr.hasMoreTokens()) {
-					String adasasd = genre_itr.nextToken();
-					genre.set(adasasd);
-					System.out.println(adasasd);
+					genre.set(genre_itr.nextToken());
 					context.write(genre, one);
 				}				
 			}
