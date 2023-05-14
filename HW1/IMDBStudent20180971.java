@@ -21,16 +21,24 @@ public class IMDBStudent20180971
 
 		public void map(Object key, Text value, Context context) throws IOException, InterruptedException 
 		{
+			//StringTokenizer가 작동하도록 문자 2개를 다른 하나의 문자로 바꿈
 			String value_string = value.toString().replaceAll("::", "@");
+			
+			//바꾼 문자를 기준으로 토큰 분리
 			StringTokenizer itr = new StringTokenizer(value_string, "@");
 			while (itr.hasMoreTokens()) 
 			{
+			
+				//영화 번호
 				int index = Integer.parseInt(itr.nextToken().trim());
-				String movie_name = itr.nextToken();
+				//영화 제목
+				String movie_name = itr.nextToken();				
+				//영화 장르 목록
 				genre_list.set(itr.nextToken());
 	
 				StringTokenizer genre_itr = new StringTokenizer(genre_list.toString(), "|");
 				
+				//목록을 나눈 뒤 1과 함께 매핑
 				while (genre_itr.hasMoreTokens()) {
 					genre.set(genre_itr.nextToken());
 					context.write(genre, one);
@@ -45,6 +53,7 @@ public class IMDBStudent20180971
 
 		public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException 
 		{
+			// value의 총합 계산
 			int sum = 0;
 			for (IntWritable val : values) 
 			{
