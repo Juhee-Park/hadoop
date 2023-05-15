@@ -49,11 +49,11 @@ public class UBERStudent20180971
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(date);
 				
-				String week_num = Integer.toString(cal.get(Calendar.DAY_OF_WEEK) - 1);
+				String week_num = Integer.toString(cal.get(Calendar.DAY_OF_WEEK) -2);
 				
 				//일요일을 맨 뒤로
-				if (week_num.equals("0")) {
-					week_num = "7";
+				if (week_num.equals("-1")) {
+					week_num = "6";
 				}
 											
 				String active_vehicles = itr.nextToken().trim();
@@ -64,10 +64,6 @@ public class UBERStudent20180971
 				key_word.set(base_number + "," + week_num);
 				value_word.set(trips + "," + active_vehicles);
 				
-				if(base_number.equals("B02512") && week_num.equals("4"))
-				{
-					System.out.println(date);
-				}
 				context.write(key_word, value_word);				
 			}
 		}
@@ -75,8 +71,7 @@ public class UBERStudent20180971
 
 	public static class UBERReducer extends Reducer<Text, Text, Text, Text> 
 	{
-		//
-		private String [] weeks = {"", "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
+		private String [] weeks = {"MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
 		private Text new_key = new Text();
 		private Text result = new Text();
 
@@ -95,10 +90,6 @@ public class UBERStudent20180971
 				
 				//요일 번호를 요일 문자로 바꿔줌
 				String week = weeks[weeks_num];
-				if(base_number.equals("B02512") && weeks_num == 4)
-				{
-					System.out.println(weeks[weeks_num]);
-				}
 				new_key.set(base_number + "," + week);
 			}
 			
@@ -113,13 +104,6 @@ public class UBERStudent20180971
 					int trips = Integer.parseInt(itr.nextToken().trim());
 					int active_vehicles = Integer.parseInt(itr.nextToken().trim());
 					
-					if(key.toString().equals("B02512,4"))
-					{
-						System.out.print(trips);
-						System.out.print("  ");
-						System.out.println(active_vehicles);
-					}
-					
 					sum_trips += trips;
 					sum_active_vehicles += active_vehicles;			
 				}				
@@ -127,13 +111,7 @@ public class UBERStudent20180971
 			
 			String sum = Integer.toString(sum_trips) + "," 
 				+ Integer.toString(sum_active_vehicles);
-			
-								
-					if(key.toString().equals("B02512,4"))
-					{
-						System.out.println(sum);
-					}
-				
+						
 			result.set(sum);
 			context.write(new_key, result);
 		}
