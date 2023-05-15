@@ -49,12 +49,12 @@ public class UBERStudent20180971
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(date);
 				
-				String week_num = Integer.toString(cal.get(Calendar.DAY_OF_WEEK) -2);
+				String week_num = Integer.toString(cal.get(Calendar.DAY_OF_WEEK) -1);
 				
 				//일요일을 맨 뒤로
-				if (week_num.equals("-1")) {
-					week_num = "6";
-				}
+				//if (week_num.equals("-1")) {
+				//	week_num = "6";
+				//}
 											
 				String active_vehicles = itr.nextToken().trim();
 				String trips = itr.nextToken().trim();				
@@ -71,7 +71,7 @@ public class UBERStudent20180971
 
 	public static class UBERReducer extends Reducer<Text, Text, Text, Text> 
 	{
-		private String [] weeks = {"MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
+		private String [] weeks = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
 		private Text new_key = new Text();
 		private Text result = new Text();
 
