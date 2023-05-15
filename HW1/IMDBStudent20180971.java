@@ -49,6 +49,8 @@ public class IMDBStudent20180971
 
 	public static class IMDbReducer extends Reducer<Text, IntWritable, Text, IntWritable> 
 	{
+		private IntWritable result = new IntWritable();
+		
 		public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException 
 		{
 			// value의 총합 계산
