@@ -109,7 +109,7 @@ public class YouTubeStudent20180971{
 		protected void cleanup(Context context) throws IOException, InterruptedException {
 			while( queue.size() != 0 ) {
 			Youtube youtube = (Youtube) queue.remove();
-			context.write( new Text( youtube.Genre), new Text( youtube.rate));
+			context.write( new Text( youtube.getString() ), NullWritable.get());
 			}
 		}
 	}
