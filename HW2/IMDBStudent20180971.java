@@ -114,10 +114,10 @@ public class IMDBStudent20180971
 			String filename = ((FileSplit) context.getInputSplit()).getPath().getName();
 			
 			// 현재 처리중인 파일 종류 (A or B)
-			if( filename.equals( "movies_exp.txt" ) ) 
+			if( filename.equals( "movies.dat" ) ) 
 				is_movie = true;
 			
-			if( filename.equals( "ratings_exp.dat" ) ) 
+			if( filename.equals( "ratings.dat" ) ) 
 			is_rating = true;
 
 		}
