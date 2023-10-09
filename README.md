@@ -1,2 +1,2 @@
-# 20180971_hadoop
-데이터공학 과제 제출용 리포지토리
+# hadoop_&_spark
+hadoop과 spark를 사용한 빅데이터 다루기 
